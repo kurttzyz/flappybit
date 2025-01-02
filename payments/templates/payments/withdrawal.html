@@ -1,0 +1,25 @@
+<h5 class="card-title">Withdraw Funds</h5>
+<form method="post" class="form" action="{% url 'payment_and_withdraw' %}">
+    {% csrf_token %}
+    <input type="hidden" name="withdraw_submit" value="true">
+    <label for="amount">Amount:</label>
+    <input type="number" name="amount" placeholder="Enter Amount" required>
+    <br>
+    <br>
+    <label for="payment_method">Payment Method:</label>
+    <select name="payment_method" required>
+        <option value="gcash">GCash</ option>
+        <option value="paymaya">PayMaya</option>
+    </select>
+    <br>
+    <br>
+    <label for="phone_number">Phone Number:</label>
+    <input type="text" name="phone_number" placeholder="Enter your phone number" required>
+    <br>
+    <button type="submit" class="btn btn-danger">Withdraw</button>
+    <br>
+    <br>
+    <hr>
+</form>
+
+// There are logo that needs to be added
