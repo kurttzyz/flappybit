@@ -10,9 +10,10 @@ from . utils import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.core.mail import EmailMessage
+from django.contrib.auth.decorators import login_required
 
 def home(request):
-   
+
 
     return render(request, 'backend/index.html')
 
@@ -46,7 +47,7 @@ def register(request):
                 'token': TokenGenerator.make_token(user)
             })
             email = EmailMessage(subject=email_subject, body=email_body,
-                from_email='SecureOdd <info.secureodd@zohomail.com>', to=[user.email]
+                from_email='TestMail <info.testmail@zohomail.com>', to=[user.email]
                 )
             email.content_subtype = 'html'
             email.send()
@@ -78,7 +79,7 @@ def referalRegister(request, code):
                 'token': TokenGenerator.make_token(user)
             })
             email = EmailMessage(subject=email_subject, body=email_body,
-                from_email='SecureOdd <info.secureodd@zohomail.com>', to=[user.email]
+                from_email='TestMail <info.testmail@zohomail.com>', to=[user.email]
                 )
             email.content_subtype = 'html'
             email.send()

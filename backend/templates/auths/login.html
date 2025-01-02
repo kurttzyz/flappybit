@@ -6,11 +6,11 @@
 
 
 <!-- Login creation start -->
-<section class="account-section overflow-hidden bg_img">
+<section class="account-section overflow-hidden bg_img mt-5">
     <div class="container">
         <div class="account__main__wrapper">
             <div class="account__form__wrapper">
-                <div class="logo"><a href="#"><img src="{% static 'assets/images/logo.png' %}" alt="logo"></a></div>
+            
                 <form class="account__form form row g-4" method="post">
 
                     {% csrf_token %}
@@ -44,7 +44,7 @@
                             <input id="check1" type="checkbox" checked>
                             <label for="check1">Remember me</label>
                         </div>
-                        <a href="#" class="forgot-pass d-block text--base">Forgot Password ?</a>
+                        <a href="{% url 'reset_password' %}" class="forgot-pass d-block text--base">Forgot Password ?</a>
                     </div>
                     <p>Don't have an account? <a href="{% url 'register' %}" class="forgot-pass d-block text--base">Sign Up</a></p>
                 </form>

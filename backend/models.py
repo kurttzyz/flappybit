@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permission, PermissionsMixin
 from django.utils.crypto import get_random_string
 # Create your models here.
 
@@ -32,15 +32,17 @@ class MyUserManager(BaseUserManager):
             password=password,
         )
 
+        permission = Permission.objects.all()
+
         user.is_admin = True
         user.is_active = True
         user.is_staff = True
         user.is_superadmin = True
+        user.user_permissions.set(permission)
         user.save(using=self._db)
         return user
 
-
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     first_name    = models.CharField(max_length=100, blank=True, null=True)
     last_name    = models.CharField(max_length=100, blank=True, null=True)
     email         = models.EmailField(max_length=100, unique=True)

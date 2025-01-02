@@ -45,7 +45,7 @@
             <div class="header-bottom-area align-items-center">
                 <div class="logo">
                 <a href="#"
-                    ><img src="{% static 'assets/images/logo.png' %}" alt="logo"
+                    ><img src="{% static 'assets/images/logo.png' %}" style="width: 300px; height: 200px;" alt="logo"
                 /></a>
                 </div>
                 <ul class="menu text-center">
@@ -81,10 +81,16 @@
                     </li>
                     {% endif %}
 
-
+                    {% if not request.user.is_authenticated%}
                     <li>
                         <a href="{% url 'login' %}" class="cmn--btn btn--md d-none d-lg-block">Sign In</a>
                     </li>
+                    {% else %}
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="cmn--btn btn--md d-none d-lg-block ">Sign Out</button>
+                    </form>
+                    {% endif %}
 
                     
                 <button class="btn-close btn-close-white d-lg-none"></button>
@@ -128,7 +134,7 @@
             >
                 <div class="logo mb-3 mb-md-0">
                 <a href="#"
-                    ><img src=" {% static 'assets/images/logo.png' %}" alt="logo"
+                    ><img src=" {% static 'assets/images/logo.png' %}" style="width: 300px; height: 200px;" alt="logo"
                 /></a>
                 </div>
                 <ul class="footer-links d-flex flex-wrap justify-content-center">
