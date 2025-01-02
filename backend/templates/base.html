@@ -1,0 +1,172 @@
+{% load static %}
+
+<!-- meta tags and other links -->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Casino - Online Casino Platform</title>
+        <link
+        rel="icon"
+        type="image/png"
+        href="{% static 'assets/images/favicon.png' %}"
+        sizes="16x16"
+        />
+        <!-- bootstrap 5  -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!-- Icon Link  -->
+        <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'assets/css/line-awesome.min.css' %}" />
+        <link rel="stylesheet" href="{% static 'assets/css/lib/animate.css' %}" />
+
+        <!-- Plugin Link -->
+        <link rel="stylesheet" href="{% static 'assets/css/lib/slick.css' %}" />
+
+        <!-- Main css -->
+        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    </head>
+    <body
+        data-bs-spy="scroll"
+        data-bs-offset="170"
+        data-bs-target=".privacy-policy-sidebar-menu"
+    >
+        <div class="overlay"></div>
+        <div class="preloader">
+        <div class="scene" id="scene">
+            
+        </div>
+        </div>
+
+        <div class="header">
+        <div class="container">
+            <div class="header-bottom">
+            <div class="header-bottom-area align-items-center">
+                <div class="logo">
+                <a href="#"
+                    ><img src="{% static 'assets/images/logo.png' %}" alt="logo"
+                /></a>
+                </div>
+                <ul class="menu text-center">
+                    <li>
+                        <a href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li>
+                        <a href="#"
+                        >Games
+                        <span class="badge badge--sm badge--base text-dark"
+                            >NEW</span
+                        ></a
+                        >
+                    </li>
+
+                    {% if request.user.is_authenticated %}
+                    <li>
+                        <a href="#">Account</a>
+                    </li>
+                    {% endif %}
+
+                
+                    <li>
+                        <a href="#">Contact Us</a>
+                    </li>
+
+                    {% if request.user.is_authenticated %}
+                    <li>
+                        <form action="{% url 'logout' %}" method="post">
+                            {% csrf_token %}
+                            <button class="cmn--btn btn--md d-lg-none w-100 ">Sign Out</button>
+                        </form>
+                    </li>
+                    {% endif %}
+
+
+                    <li>
+                        <a href="{% url 'login' %}" class="cmn--btn btn--md d-none d-lg-block">Sign In</a>
+                    </li>
+
+                    
+                <button class="btn-close btn-close-white d-lg-none"></button>
+                </ul>
+                <div
+                class="header-trigger-wrapper d-flex d-lg-none align-items-center"
+                >
+                <div class="header-trigger me-4">
+                    <span></span>
+                </div>
+                <a
+                    href="{% url 'login' %}"
+                    class="cmn--btn active btn--md d-none d-sm-block"
+                    >Sign In</a
+                >
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
+        {% block body %}
+
+
+
+
+
+        {% endblock %}
+
+        
+        <!-- Footer Section Starts Here -->
+        <footer
+        class="footer-section bg_img"
+        style="background: url(/static/assets/images/footer/bg.jpg) center"
+        >
+        <div class="footer-top">
+            <div class="container">
+            <div
+                class="footer-wrapper d-flex flex-wrap align-items-center justify-content-md-between justify-content-center"
+            >
+                <div class="logo mb-3 mb-md-0">
+                <a href="#"
+                    ><img src=" {% static 'assets/images/logo.png' %}" alt="logo"
+                /></a>
+                </div>
+                <ul class="footer-links d-flex flex-wrap justify-content-center">
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+            <div
+                class="footer-wrapper d-flex flex-wrap justify-content-center align-items-center text-center"
+            >
+                <p class="copyright text-white">
+                Copyrights &copy; 2025 All Rights Reserved by
+                <a href="#" class="text--base ms-2">Flappybet</a>
+                </p>
+            </div>
+            </div>
+        </div>
+        <div class="shapes">
+            <img src="{% static 'assets/images/footer/shape.png' %}" alt="footer" class="shape1" />
+        </div>
+        </footer>
+        <!-- Footer Section Ends Here -->
+
+        <!-- jQuery library -->
+        <script src="{% static 'assets/js/lib/jquery-3.6.0.min.js' %}"></script>
+        <!-- bootstrap 5 js -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <!-- Pluglin Link -->
+        <script src="{% static 'assets/js/lib/slick.min.js' %}"></script>
+
+        <!-- main js -->
+        <script src="{% static 'assets/js/main.js' %}"></script>
+    </body>
+
+</html>

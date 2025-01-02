@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+
+
+
+<!-- Login creation start -->
+<section class="account-section overflow-hidden bg_img">
+    <div class="container">
+        <div class="account__main__wrapper">
+            <div class="account__form__wrapper">
+                <div class="logo"><a href="#"><img src="{% static 'assets/images/logo.png' %}" alt="logo"></a></div>
+                <form class="account__form form row g-4" method="post">
+
+                    {% csrf_token %}
+                    {% for message in messages %}
+                        {% if message.tags == success %}
+                            <div class="success">{{message}}</div>
+                        {% else %}
+                            <div class="error">{{message}}</div>
+                        {% endif %}
+                    {% endfor %}
+                    
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div for="email" class="input-pre-icon"><i class="las la-user"></i></div>
+                            <input id="email" type="text" class="form--control form-control style--two" placeholder="Email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div for="password" class="input-pre-icon"><i class="las la-lock"></i></div>
+                            <input id="password" type="password" class="form--control form-control style--two" placeholder="Password" name="password" required>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <button class="cmn--btn active w-100 btn--round" type="submit">Sign In</button>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-wrap flex-sm-nowrap justify-content-between mt-5">
+                        <div class="form--check d-flex align-items-center">
+                            <input id="check1" type="checkbox" checked>
+                            <label for="check1">Remember me</label>
+                        </div>
+                        <a href="#" class="forgot-pass d-block text--base">Forgot Password ?</a>
+                    </div>
+                    <p>Don't have an account? <a href="{% url 'register' %}" class="forgot-pass d-block text--base">Sign Up</a></p>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- Login creation ends -->
+
+
+{% endblock %}

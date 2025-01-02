@@ -1,0 +1,34 @@
+from django.urls import path
+from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+from .utils import PasswordReset
+
+from django.contrib.auth.views import (
+    LogoutView,
+    PasswordResetDoneView, PasswordResetConfirmView,
+    PasswordResetCompleteView
+)
+
+urlpatterns = [
+    path('', views.home, name='home'),
+
+
+
+    # authentication urls
+
+    path('login/', views.loginview, name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('register/', views.register, name='register'),
+    path('register/<str:referal>', views.referalRegister, name='referal'),
+
+
+    # Forgetting password urls
+    path('password_reset/', PasswordReset.as_view(template_name='auths/reset_password.html'), name='reset_password'),
+    path('password_reset_done/', PasswordResetDoneView.as_view(template_name='auths/password_reset_done.html'), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='auths/password_reset_confirm.html'), name='password_reset_confirm'),
+    path('password_reset_complete/', PasswordResetCompleteView.as_view(template_name='auths/password_reset_complete.html'), name='password_reset_complete'),
+
+
+
+]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
