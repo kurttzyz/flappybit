@@ -1,0 +1,40 @@
+// Admin can post a number to display specific phone number 
+<p>Send to one of these Gcash: 
+    {% for number in numbers %}
+    <strong> {{ number.gcash }}</strong>
+    {% endfor %}</p> 
+   
+    <strong>09610310072</strong>
+  <hr>
+  <p>Send to one these MAYA: {% for number in numbers %}
+    <strong>{{ number.gcash }}</strong>
+{% endfor %}</p> 
+<strong>09610310072</strong>
+  <hr>
+  
+  <img src="{% static '' %}" class="promotion" alt="Promotion">
+ 
+
+  <h5 class="card-title">Add Funds</h5>
+  <form method="post" class="form" action="{% url 'payment_and_withdraw' %}">
+      {% csrf_token %}
+      <input type="hidden" name="payment_submit" value="true">
+      <label for="amount">Amount:</label>
+      <input type="number" name="amount" placeholder="Enter Amount" required>
+      <br>
+      <br>
+      <label for="reference_number" class="form-label text-light">Last 4 digits Reference Number:</label>
+      <input type="text" name="reference_number" required>
+      <br>
+      <br>
+      <label for="payment_method">Payment Method:</label>
+      <select name="payment_method" required>
+          <option value="Maya">Maya</option>
+          <option value="GCash">GCash</option>
+      </select>
+      <br>
+      <br>
+      <button type="submit" class="btn btn-success">Deposit</button>
+  </form>
+
+// There are logos that need to be added
