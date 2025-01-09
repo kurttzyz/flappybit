@@ -1,0 +1,91 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+
+{% block sidebar %}
+    <li>
+        <a href="{% url 'profile' %}" class="active">Dashboard</a>
+    </li>
+    <li>
+        <a href="{% url 'history' %}">Transection History</a>
+    </li>
+    <li>
+        <a href="{% url 'payments:deposit' %}">Deposit</a>
+    </li>
+    <li>
+        <a href="{% url 'payments:withdrawal' %}">Withdrawal</a>
+    </li>
+{% endblock %}
+
+{% block content  %}
+
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+
+    <div class="row justify-content-center g-4">
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <h2 class="price">{% if balance %} ₱{{balance}} {% else %} ₱0 {% endif %}</h2>
+                    <p class="info">TOTAL BALANCE</p>
+                    
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-wallet"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <h2 class="price">{% if amount %} ₱{{amount}} {% else %} ₱0 {% endif %}</h2>
+                    <p class="info">TOTAL DEPOSIT</p>
+                    
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-wallet"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <h2 class="price">{% if bal %} ₱{{bal}} {% else %} ₱0 {% endif %}</h2>
+                    <p class="info">TOTAL WITHDRAW</p>
+                    
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="table--responsive--md mt-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Transection ID</th>
+                    <th>Transection Type</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in history %}
+                <tr>
+                    <td class="trx-id" data-label="Transection ID">{{i.reference_number}}</td>
+                    <td class="trx-type" data-label="Transection Type">{{i.action}}</td>
+                    <td class="amount" data-label="status">{{i.status}}</td>
+                    <td class="date" data-label="Date">{{i.date_created| date}} {{i.date_created|time}}</td>
+                    <td class="amount" data-label="Amount">₱{{i.amount}}</td>
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+
+<!-- Dashboard Section Starts Here -->
+<div class="dashboard-section padding-top padding-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="dashboard-sidebar">
+                    <div class="close-dashboard d-lg-none">
+                        <i class="las la-times"></i>
+                    </div>
+                    <div class="dashboard-user">
+                        
+                        <div class="user-content">
+                            <span class="fs-sm">Welcome</span>
+                            <h5 class="name">{{ request.user.first_name }} {{ request.user.last_name }}</h5>
+                            <ul class="user-option">
+                                <li>
+                                    <a href="#0">
+                                        <i class="las la-bell"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#0">
+                                        <i class="las la-pen"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#0">
+                                        <i class="las la-envelope"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul class="user-dashboard-tab">
+
+                        {% block sidebar %}
+
+                        
+
+
+                        {% endblock %}
+                        
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-9">
+                <div class="user-toggler-wrapper d-flex align-items-center d-lg-none">
+                    <h4 class="title m-0">User Dashboard</h4>
+                    <div class="user-toggler">
+                        <i class="las la-sliders-h"></i>
+                    </div>
+                </div>
+
+                {% block content %}
+
+
+                {% endblock %}
+
+
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+<!-- Dashboard Section Ends Here -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% endblock %}

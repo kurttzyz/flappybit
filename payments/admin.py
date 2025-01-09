@@ -2,7 +2,12 @@ from django.contrib import admin
 from django.db import transaction
 from decimal import Decimal  # Import Decimal
 from django.contrib.auth.models import User  # or your custom User model
-from .models import Payment, Withdrawal
+from .models import Deposit, Withdrawal, PaymentMethod, TransactionHistory
+
+
+admin.site.register(PaymentMethod)
+
+admin.site.register(TransactionHistory)
 
     
 
@@ -27,7 +32,7 @@ def verify_payments(modeladmin, request, queryset):
             print(f"New balance: {User.balance}")
 
 
-@admin.register(Payment)
+@admin.register(Deposit)
 class PaymentAdmin(admin.ModelAdmin):
     # Include 'user' in the list display to show it in the admin panel
     list_display  = ('user', 'reference_number', 'amount', 'payment_method', 'status', 'date_created')
@@ -47,8 +52,8 @@ class PaymentAdmin(admin.ModelAdmin):
 
 @admin.register(Withdrawal)
 class WithdrawalAdmin(admin.ModelAdmin):
-    list_display  = ('user', 'amount', 'payment_method', 'phone_number', 'status', 'created_at')
-    list_filter   = ('status', 'payment_method', 'created_at')
+    list_display  = ('user', 'amount', 'payment_method', 'phone_number', 'status', 'date_created')
+    list_filter   = ('status', 'payment_method', 'date_created')
     search_fields = ('user__username', 'status')  # Include status for search
     actions       = ['approve_withdrawals', 'reject_withdrawals']
 

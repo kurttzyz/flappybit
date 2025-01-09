@@ -11,6 +11,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.core.mail import EmailMessage
 from django.contrib.auth.decorators import login_required
+from payments.models import TransactionHistory
 
 def home(request):
 
@@ -121,4 +122,15 @@ def loginview(request):
         return render(request, 'auths/login.html')
     else:
         return redirect('/')
+    
+
+def profile(request):
+    history = TransactionHistory.objects.filter(user=request.user)[:5]
+    args = {'history': history}
+    return render(request, 'backend/profile.html', args )
+
+def history(request):
+    total_history = TransactionHistory.objects.all().filter(user=request.user)
+    args = {'history': total_history}
+    return render(request, 'backend/history.html', args)
 

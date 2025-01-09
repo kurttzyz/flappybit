@@ -1,40 +1,75 @@
-// Admin can post a number to display specific phone number 
-<p>Send to one of these Gcash: 
-    {% for number in numbers %}
-    <strong> {{ number.gcash }}</strong>
-    {% endfor %}</p> 
-   
-    <strong>09610310072</strong>
-  <hr>
-  <p>Send to one these MAYA: {% for number in numbers %}
-    <strong>{{ number.gcash }}</strong>
-{% endfor %}</p> 
-<strong>09610310072</strong>
-  <hr>
-  
-  <img src="{% static '' %}" class="promotion" alt="Promotion">
- 
+{% extends 'base2.html' %}
+{% load static %}
 
-  <h5 class="card-title">Add Funds</h5>
-  <form method="post" class="form" action="{% url 'payment_and_withdraw' %}">
-      {% csrf_token %}
-      <input type="hidden" name="payment_submit" value="true">
-      <label for="amount">Amount:</label>
-      <input type="number" name="amount" placeholder="Enter Amount" required>
-      <br>
-      <br>
-      <label for="reference_number" class="form-label text-light">Last 4 digits Reference Number:</label>
-      <input type="text" name="reference_number" required>
-      <br>
-      <br>
-      <label for="payment_method">Payment Method:</label>
-      <select name="payment_method" required>
-          <option value="Maya">Maya</option>
-          <option value="GCash">GCash</option>
-      </select>
-      <br>
-      <br>
-      <button type="submit" class="btn btn-success">Deposit</button>
-  </form>
+{% block sidebar %}
 
-// There are logos that need to be added
+  <li>
+    <a href="{% url 'profile' %}" >Dashboard</a>
+  </li>
+  <li>
+    <a href="{% url 'history' %}">Transection History</a>
+  </li>
+  <li>
+    <a href="{% url 'payments:deposit' %}" class="active">Deposit</a>
+  </li>
+  <li>
+    <a href="{% url 'payments:withdrawal' %}}">Withdrawal</a>
+  </li>
+
+
+{% endblock %}
+
+{% block content %}
+
+
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+
+<!-- Account Section Starts Here -->
+<section class=" overflow-hidden bg_img">
+    <div class="container">
+        <div class="account__main__wrapper">
+            <div class="account__form__wrapper sign-up">
+              <h3 class="pb-2"> Deposit</h3>
+              <form class="account__form form row g-4" method="post">
+
+                  {% csrf_token %}
+                  {% if form.errors %}
+                  <div class="error">
+                    {{form.errors}}
+                  </div>
+                  {% endif %}
+                  {% for message in messages %}
+                      {% if message.tags == success %}
+                          <span class="success">{{message}}</span>
+                      {% else %}
+                          <span class="error">{{message}}</span>
+                      {% endif %}
+                  {% endfor %}
+                  <div class="col-12">
+                      <div class="form-group">
+                          <div for="email" class="input-pre-icon"><i class="las la-wallet"></i></div>
+                          {{form.payment_method}}
+                      </div>
+                  </div>
+                  <div class="col-12">
+                      <div class="form-group">
+                          <div for="fname" class="input-pre-icon"><i class="las la-keyboard"></i></div>
+                          {{form.amount}}
+                      </div>
+                  </div>
+                  
+                  <div class="col-lg-12">
+                      <div class="form-group">
+                          <button class="cmn--btn active w-100 btn--round" type="submit">Proceed</button>
+                      </div>
+                  </div>
+                
+              </form>
+            </div>
+    
+        </div>
+    </div>
+</section>
+
+{% endblock %}

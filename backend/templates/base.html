@@ -20,6 +20,8 @@
         <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}" />
         <link rel="stylesheet" href="{% static 'assets/css/line-awesome.min.css' %}" />
         <link rel="stylesheet" href="{% static 'assets/css/lib/animate.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+        
 
         <!-- Plugin Link -->
         <link rel="stylesheet" href="{% static 'assets/css/lib/slick.css' %}" />
@@ -44,14 +46,12 @@
             <div class="header-bottom">
             <div class="header-bottom-area align-items-center">
                 <div class="logo">
-                <a href="#"
+                <a href="{% url 'home' %}"
                     ><img src="{% static 'assets/images/logo.png' %}" style="width: 300px; height: 200px;" alt="logo"
                 /></a>
                 </div>
+                <div class="balance ms-auto">{% if balance %} ₱{{balance}} {% else %} ₱0.00 {% endif %}</div>
                 <ul class="menu text-center">
-                    <li>
-                        <a href="{% url 'home' %}">Home</a>
-                    </li>
                     <li>
                         <a href="#"
                         >Games
@@ -63,7 +63,7 @@
 
                     {% if request.user.is_authenticated %}
                     <li>
-                        <a href="#">Account</a>
+                        <a href="{% url 'profile' %}">Account</a>
                     </li>
                     {% endif %}
 

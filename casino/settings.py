@@ -30,7 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Added to the installed app
-
+    'payments.apps.PaymentsConfig',
     'backend.apps.BackendConfig',
     'storages',
 ]
@@ -60,6 +60,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # external context_processors
+
+                'backend.context_processors.Balance',
+                'backend.context_processors.TotalDeposit',
+                'backend.context_processors.TotalWithdrawal',
+
             ],
         },
     },
@@ -139,34 +146,39 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Email settings
 
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_HOST='mail.apexfortitude.com'
-# EMAIL_PORT =587
-# EMAIL_HOST_USER='support@apexfortitude.com'
-# EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_HOST_PASSWORD')
-# EMAIL_USE_TLS =True
-# DEFAULT_FROM_EMAIL = 'Apexfortitude <support@apexfortitude.com>'
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST='smtp.zoho.com'
+EMAIL_PORT =587
+EMAIL_HOST_USER='info.testmail@zohomail.com'
+EMAIL_HOST_PASSWORD=os.environ.get('EMAIL_PASSWORD')
+EMAIL_USE_TLS =True
+DEFAULT_FROM_EMAIL = 'TestMail <info.testmail@zohomail.com>'
 
 
 # s3 bucket settings and config
 
-AWS_ACCESS_KEY_ID=os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY=os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_STORAGE_BUCKET_NAME = 'flappybet'
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-AWS_S3_REGION_NAME = 'eu-west-1' 
+# AWS_ACCESS_KEY_ID=os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY=os.environ.get('AWS_SECRET_ACCESS_KEY')
+# AWS_STORAGE_BUCKET_NAME = 'flappybet'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+# AWS_S3_REGION_NAME = 'eu-west-1' 
 
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
 STATIC_FILES = [
     os.path.join(BASE_DIR, 'static')
 ]
+# static config for local server
+STATIC_URL = '/static/'
+
+
+# static config for production
+# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/'
 
 
 
