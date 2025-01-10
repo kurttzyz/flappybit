@@ -10,9 +10,10 @@
     <div class="container">
         <div class="account__main__wrapper">
             <div class="account__form__wrapper sign-up">
-                
+                <h2>Register to Flappybet</h2>
+                <br>
                 <form class="account__form form row g-4" method="post">
-
+                
                     {% csrf_token %}
 
                     {% if form.errors %}
@@ -33,6 +34,7 @@
                             {{forms.email}}
                         </div>
                     </div>
+                    
                     <div class="col-xl-6 col-md-6">
                         <div class="form-group">
                             <div for="fname" class="input-pre-icon"><i class="las la-user"></i></div>
