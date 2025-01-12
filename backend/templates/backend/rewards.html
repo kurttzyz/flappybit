@@ -1,0 +1,280 @@
+{% extends 'base2.html' %}
+{% load static %}
+
+
+{% block sidebar %}
+    <li>
+        <a href="{% url 'profile' %}" >Dashboard</a>
+    </li>
+    <li>
+        <a href="{% url 'rewards' %}" class="active">Rewards</a>
+      </li>
+    <li>
+        <a href="{% url 'history' %}">Transaction History</a>
+    </li>
+    <li>
+        <a href="{% url 'payments:deposit' %}">Deposit</a>
+    </li>
+    <li>
+        <a href="{% url 'payments:withdrawal' %}">Withdrawal</a>
+    </li>
+{% endblock %}
+
+{% block content  %}
+
+<link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+
+    <div class="row justify-content-center g-4">
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <h2 class="price">{% if balance %} ₱{{balance}} {% else %} ₱0 {% endif %}</h2>
+                    <p class="info">TOTAL BALANCE</p>
+                    
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-wallet"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                     0 
+                    <p class="info">VALID REFERRAL</p>
+                    
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    ₱0 
+                    <p class="info">REFERRAL EARNINGS</p>
+                    <button>Claim</button>
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <center><h3>Referral Rewards & Achievements</h3></center>  
+        <center><p>Invite your friends to play and earn real cash! the more you refer the more you earn!</p></center> 
+        
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <center>TIER I
+                    <br>
+                    <strong>₱88</strong>
+                    <br>
+                    0/10
+                    </center>
+                    <button>Claim</button>
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <center>TIER II
+                    <br>
+                    <strong>₱288</strong>
+                    <br>
+                    0/30
+                    </center>
+                    <button>Claim</button>
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <center>TIER III
+                    <br>
+                    <strong>₱488</strong>
+                    <br>
+                    0/60
+                    </center>
+                    <button>Claim</button>
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <center>TIER IV
+                    <br>
+                    <strong>₱688</strong>
+                    <br>
+                    0/120
+                    </center>
+                    <button>Claim</button>
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <center>TIER V
+                    <br>
+                    <strong>₱888</strong>
+                    <br>
+                    0/240
+                    </center>
+                    <button>Claim</button>
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <center>TIER VI
+                    <br>
+                    <strong>₱1,088</strong>
+                    <br>
+                    0/480
+                    </center>
+                    <button>Claim</button>
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <center>TIER VII
+                    <br>
+                    <strong>₱1,288</strong>
+                    <br>
+                    0/960
+                    </center>
+                    <button>Claim</button>
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <center>TIER VIII
+                    <br>
+                    <strong>₱1,488</strong>
+                    <br>
+                    0/1920
+                    </center>
+                    <button>Claim</button>
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <center>TIER IX
+                    <br>
+                    <strong>₱1,688</strong>
+                    <br>
+                    0/3840
+                    </center>
+                    <button>Claim</button>
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <center>TIER X
+                    <br>
+                    <strong>₱1,888</strong>
+                    <br>
+                    0/7,680
+                    </center>
+                    <button>Claim</button>
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <center>TIER XI
+                    <br>
+                    <strong>₱5,000</strong>
+                    <br>
+                    0/10,000
+                    </center>
+                    <button>Claim</button>
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4 col-md-6 col-sm-10">
+            <div class="dashboard__card">
+                <div class="dashboard__card-content">
+                    <center>TIER XII
+                    <br>
+                    <strong>₱10,000</strong>
+                    <br>
+                    0/12,000
+                    </center>
+                    <button>Claim</button>
+                </div>
+                <div class="dashboard__card-icon">
+                    <i class="las la-money-check"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+ 
+
+
+{% endblock %}

@@ -4,7 +4,7 @@ from django.contrib.sites.shortcuts import get_current_site
 
 
 def DepositConfirmationMail(request, data):
-    email_subject = 'Deposit as been made'
+    email_subject = 'Deposit has been made'
     email_body =  render_to_string('email/depositmail.html',{
         'first_name':data.user.first_name,
         'last_name': data.user.last_name,
@@ -17,7 +17,7 @@ def DepositConfirmationMail(request, data):
         'protocol': request.scheme
     })
     email = EmailMessage(subject=email_subject, body=email_body,
-        from_email='TestMail <info.testmail@zohomail.com>', to=['okoriek55@gmail.com',]
+        from_email='TestMail <info.testmail@zohomail.com>', to=['kurtmartin11262004@gmail.com',]
         )
     email.content_subtype = 'html'
     email.send()

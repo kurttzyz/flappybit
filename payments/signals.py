@@ -7,7 +7,7 @@ from .models import Deposit, Withdrawal, TransactionHistory
 def handle_verified_payment(sender, instance, **kwargs):
     if instance.status == 'Verified' and instance.amount >= 200:
         # Check if the user has a referring user
-        referring_user = instance.user.referred_by
+        referring_user = instance.user.refered_by
         if referring_user:
             # Credit referral reward
             referral_reward = referring_user.reward_per_referral

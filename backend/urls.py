@@ -14,6 +14,8 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('profile/', views.profile, name='profile'),
     path('transaction_history/', views.history, name='history'),
+    path('my_rewards/', views.rewards, name="rewards"),
+    path("terms&condition/", views.terms, name="terms"),
 
 
 

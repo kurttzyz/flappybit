@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     # Added to the installed app
     'payments.apps.PaymentsConfig',
     'backend.apps.BackendConfig',
-    'storages',
+   
+
 ]
 
 AUTH_USER_MODEL = 'backend.User'
@@ -83,15 +84,14 @@ WSGI_APPLICATION = 'casino.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'finovaed_flappy_test_database',
-        'USER': 'finovaed_flappy_test_user',
-        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'HOST': 's4.whitelabelclouds.com',  # Or IP address
-        'PORT': '3306',       # Default MySQL port
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'test',
+        'USER': 'postgres',
+        'PASSWORD': 'adminkurt',
+        'HOST': 'localhost',  # Or IP address
+        'PORT': '5432',       # Default MySQL port
     }
 }
-
 
 
 # Password validation
@@ -118,7 +118,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Manila'
 
 USE_I18N = True
 
