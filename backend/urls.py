@@ -14,7 +14,12 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('profile/', views.profile, name='profile'),
     path('transaction_history/', views.history, name='history'),
+<<<<<<< HEAD
     path('getbalance/', views.getbalance, name='balance'),
+=======
+    path('my_rewards/', views.rewards, name="rewards"),
+    path("terms&condition/", views.terms, name="terms"),
+>>>>>>> 0244ff341220a700c22737e2212fae206c843efa
 
 
 

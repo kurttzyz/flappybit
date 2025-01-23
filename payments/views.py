@@ -15,6 +15,11 @@ def make_withdrawal(request):
             data = form.save(commit=False)
             data.user = request.user
             user = User.objects.get(email= request.user.email)
+
+            if data.amount <= 500:
+                messages.error(request, 'The minimum withdrawal amount is 500 pesos.')
+                return redirect('/withdrawal')
+            
             if data.amount <= user.balance:
                 user.balance -= data.amount
                 user.save()

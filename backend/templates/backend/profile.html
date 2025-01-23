@@ -7,7 +7,10 @@
         <a href="{% url 'profile' %}" class="active">Dashboard</a>
     </li>
     <li>
-        <a href="{% url 'history' %}">Transection History</a>
+        <a href="{% url 'rewards' %}">Rewards</a>
+      </li>
+    <li>
+        <a href="{% url 'history' %}">Transaction History</a>
     </li>
     <li>
         <a href="{% url 'payments:deposit' %}">Deposit</a>
@@ -60,31 +63,51 @@
             </div>
         </div>
     </div>
-    
-    <div class="table--responsive--md mt-5">
-        <table class="table">
+            <br>
+            <table class="table">
+                <center><h3>Referral Leaderboard</h3></center>
             <thead>
                 <tr>
-                    <th>Transection ID</th>
-                    <th>Transection Type</th>
-                    <th>Status</th>
-                    <th>Date</th>
-                    <th>Amount</th>
+                    <th>Rank</th>
+                    <th>Name</th>
+                    <th>Referrals</th>
+                    <th>Earnings</th>
                 </tr>
             </thead>
             <tbody>
-                {% for i in history %}
                 <tr>
-                    <td class="trx-id" data-label="Transection ID">{{i.reference_number}}</td>
-                    <td class="trx-type" data-label="Transection Type">{{i.action}}</td>
-                    <td class="amount" data-label="status">{{i.status}}</td>
-                    <td class="date" data-label="Date">{{i.date_created| date}} {{i.date_created|time}}</td>
-                    <td class="amount" data-label="Amount">₱{{i.amount}}</td>
+                    <td class="rank">1</td>
+                    <td>John Doe</td>
+                    <td>50</td>
+                    <td>₱1000</td>
                 </tr>
-                {% endfor %}
-                
+                <tr>
+                    <td class="rank">2</td>
+                    <td>Jane Smith</td>
+                    <td>40</td>
+                    <td>₱10,000</td>
+                </tr>
+                <tr>
+                    <td class="rank">3</td>
+                    <td>Mike Johnson</td>
+                    <td>35</td>
+                    <td>₱100</td>
+                </tr>
+                <tr>
+                    <td class="rank">4</td>
+                    <td>Emily Davis</td>
+                    <td>30</td>
+                    <td>₱50</td>
+                </tr>
+                <tr>
+                    <td class="rank">5</td>
+                    <td>Chris Brown</td>
+                    <td>25</td>
+                    <td>₱150</td>
+                </tr>
             </tbody>
-        </table>
+            </table>
+        
     </div>
 
 

@@ -28,7 +28,7 @@ def EmailVerification(request, uidb64, token):
     if user is not None and TokenGenerator.check_token(user, token):
         user.is_active=  True
         user.save()
-        messages.add_message(request, messages.SUCCESS, 'Email verification complete' )
+        messages.add_message(request, messages.SUCCESS, 'Email verification complete. You can now enter your email and password.' )
     return redirect('/login')
 
 def register(request):
@@ -115,7 +115,7 @@ def loginview(request):
                     else:
                         messages.error(request, 'Invalid email or password.')
                 else:
-                    messages.error(request, 'Your account is currently inactive, Please contact support for assistance.')
+                    messages.error(request, 'Your account is currently inactive. To activate check your email or spam, Please contact support for assistance.')
                     return redirect('/login')
             except:
                 messages.error(request, 'Invalid email or password.')
@@ -134,6 +134,7 @@ def history(request):
     args = {'history': total_history}
     return render(request, 'backend/history.html', args)
 
+<<<<<<< HEAD
 def getbalance(request):
     try:
         user = User.objects.get(email = request.user.email)
@@ -142,4 +143,11 @@ def getbalance(request):
     except:
         return JsonResponse({'bal': 0})
     
+=======
+def rewards(request):
+    return render(request, 'backend/rewards.html')
+
+def terms(request):
+    return render(request, 'backend/terms.html')
+>>>>>>> 0244ff341220a700c22737e2212fae206c843efa
 

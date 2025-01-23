@@ -19,17 +19,17 @@ def verify_payments(modeladmin, request, queryset):
             print(f"Verifying payment with reference number: {payment.reference_number}")
             
             # Update payment status
-            payment.status = 'Verified'
+            payment.status = 'Approved'
             payment.save()
             
             user = payment.user
-            balance, created = balance.objects.get_or_create(user=user)
 
-            print(f"Old balance: {User.balance}")
-            User.balance += payment.amount
-            User.save()
+            print(f"Old balance: {user.balance}")
 
-            print(f"New balance: {User.balance}")
+            user.balance += payment.amount
+            user.save()
+
+            print(f"New balance: {user.balance}")
 
 
 @admin.register(Deposit)
@@ -65,34 +65,34 @@ class WithdrawalAdmin(admin.ModelAdmin):
         for withdrawal in pending_withdrawals:
             # Get user's balance
             try:
-                User = User.objects.get(user=withdrawal.user)
-            except User.DoesNotExist:
+               user_wallet = withdrawal.user
+            except AttributeError:
                 self.message_user(request, f"Wallet not found for user {withdrawal.user.username}.", level='error')
                 continue
 
             # Check if wallet balance is sufficient
-            if User.balance >= withdrawal.amount:
+            if hasattr(user_wallet, 'balance') and user_wallet.balance >= withdrawal.amount: 
                 with transaction.atomic():
                     # Deduct amount from wallet
-                    User.save()
+                    user_wallet.save()
 
                     # Update withdrawal status
                     withdrawal.status = 'Approved'
                     withdrawal.save()
 
-                self.message_user(request, f"Withdrawal approved for user {withdrawal.user.username}.")
+                self.message_user(request, f"Withdrawal approved for user {withdrawal.user}.")
             else:
-                self.message_user(request, f"Insufficient balance for user {withdrawal.user.username}.", level='error')
+                self.message_user(request, f"Insufficient balance for user {withdrawal.user}.", level='error')
 
     approve_withdrawals.short_description = "Approve selected withdrawals"
 
     def reject_withdrawals(self, request, queryset):
         # Filter pending withdrawals
-        rejected_withdrawals = queryset.filter(status='Pending')
+        pending_withdrawals = queryset.filter(status='Pending')
 
         # Update status to rejected
-        updated = rejected_withdrawals.update(status='Rejected')
-        self.message_user(request, f"{updated} withdrawal(s) marked as Rejected.")
+        updated = pending_withdrawals.update(status='Rejected')
+        self.message_user(request, f"{updated} withdrawal marked as Rejected.")
 
     reject_withdrawals.short_description = "Reject selected withdrawals"
 

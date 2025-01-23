@@ -7,7 +7,10 @@
         <a href="{% url 'profile' %}" >Dashboard</a>
     </li>
     <li>
-        <a href="{% url 'history' %}" class="active">Transection History</a>
+        <a href="{% url 'rewards' %}">Rewards</a>
+      </li>
+    <li>
+        <a href="{% url 'history' %}" class="active">Transaction History</a>
     </li>
     <li>
         <a href="{% url 'payments:deposit' %}">Deposit</a>
@@ -26,8 +29,8 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th>Transection ID</th>
-                    <th>Transection Type</th>
+                    <th>Transaction ID</th>
+                    <th>Transaction Type</th>
                     <th>Status</th>
                     <th>Date</th>
                     <th>Amount</th>

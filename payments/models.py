@@ -42,7 +42,7 @@ class Withdrawal(models.Model):
     STATUS_CHOICES = [
         ('Pending', 'Pending'),
         ('Approved', 'Approved'),
-        ('Declined', 'Declined'),
+        ('Rejected', 'Rejected'),
     ]
     
     user           = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -61,7 +61,7 @@ class TransactionHistory(models.Model):
     STATUS_CHOICES = [
         ('Pending', 'Pending'),
         ('Approved', 'Approved'),
-        ('Declined', 'Declined'),
+        ('Rejected', 'Rejected'),
     ]
 
     option = (
@@ -71,7 +71,7 @@ class TransactionHistory(models.Model):
 
     user =  models.ForeignKey(User, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=10, decimal_places=2)
-    reference_number = models.CharField(max_length=50, blank=True, null=True, unique=True)
+    reference_number = models.CharField(max_length=50, blank=True, null=True, unique=False)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, blank=True, null=True)
     action = models.CharField(max_length=50, choices=option)
     date_created = models.DateTimeField(default=timezone.now)
