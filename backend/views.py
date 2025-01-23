@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from  django.http import HttpResponse
+from  django.http import HttpResponse, JsonResponse
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes, force_str
 from django.contrib.sites.shortcuts import get_current_site
@@ -133,4 +133,13 @@ def history(request):
     total_history = TransactionHistory.objects.all().filter(user=request.user)
     args = {'history': total_history}
     return render(request, 'backend/history.html', args)
+
+def getbalance(request):
+    try:
+        user = User.objects.get(email = request.user.email)
+        bal = user.balance
+        return JsonResponse({'bal': bal})
+    except:
+        return JsonResponse({'bal': 0})
+    
 

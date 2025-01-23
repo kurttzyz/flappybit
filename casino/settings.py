@@ -34,7 +34,9 @@ INSTALLED_APPS = [
     # Added to the installed app
     'payments.apps.PaymentsConfig',
     'backend.apps.BackendConfig',
+    'games.apps.GamesConfig',
     'storages',
+
 ]
 
 AUTH_USER_MODEL = 'backend.User'
@@ -177,6 +179,7 @@ STATIC_FILES = [
 ]
 # static config for local server
 STATIC_URL = '/static/'
+
 
 
 # static config for production
