@@ -22,6 +22,15 @@ ALLOWED_HOSTS = ['*']
 
 # Application definition
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://f731-2001-4455-3e8-ff00-e5ce-766f-4f25-a3b7.ngrok-free.app',  # Allow all ngrok subdomains
+]
+
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
+
+
 INSTALLED_APPS = [
     'jazzmin',
     'django.contrib.admin',
@@ -34,6 +43,7 @@ INSTALLED_APPS = [
     # Added to the installed app
     'payments.apps.PaymentsConfig',
     'backend.apps.BackendConfig',
+    'games.apps.GamesConfig',
    
 
 ]
@@ -85,7 +95,7 @@ WSGI_APPLICATION = 'casino.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'test',
+        'NAME': 'flappybit3',
         'USER': 'postgres',
         'PASSWORD': 'adminkurt',
         'HOST': 'localhost',  # Or IP address

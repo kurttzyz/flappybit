@@ -21,19 +21,18 @@
             <div class="banner-wrapper d-flex flex-wrap align-items-center">
             <div class="banner-content">
                 <h1 class="banner-content__title">
-                Play <span class="text--base">Online Casino</span> & Win Money
-                Unlimited
+                Play our <span class="text--base"> Online Casino</span> & Win Unlimited Cash Prizes!
                 </h1>
                 <p class="banner-content__subtitle">
-                PLAY CASINO AND EARN REAL CASH ONLINE. THE ULTIMATE ONLINE CASINO
+                PLAY OUR CASINO AND EARN REAL CASH ONLINE. THE ULTIMATE ONLINE CASINO
                 PLATFORM.
                 </p>
                 {% if not request.user.is_authenticated %}
                 <div class="button-wrapper">
-                <a href="#" class="cmn--btn active btn--lg"
-                    ><i class="#"></i> Play Now</a
+                <a href="login" class="cmn--btn active btn--lg"
+                    ><i class="#"></i> Log In</a
                 >
-                <a href="{% url 'register' %}" class="cmn--btn btn--lg">Sign In</a>
+                <a href="{% url 'register' %}" class="cmn--btn btn--lg">Create Your Account</a>
                 </div>
                 {% endif %}
                 <img src="{% static 'assets/images/banner/card.png' %}" alt="" class="shape1" />
@@ -88,12 +87,13 @@
 <section
 class="game-section padding-top padding-bottom bg_img"
 style="background: url(/static/assets/images/game/bg3.jpg)"
+id="games"
 >
 <div class="container">
     <div class="row justify-content-center">
     <div class="col-lg-6 col-xl-5">
         <div class="section-header text-center">
-        <h2 class="section-header__title">Top Awesome Games</h2>
+        <h2 class="section-header__title">Hottest Games</h2>
         <p>
             A casino is a facility for certain types of gambling. Casinos
             are often built combined with hotels, resorts,.
@@ -106,14 +106,86 @@ style="background: url(/static/assets/images/game/bg3.jpg)"
         <div class="game-item">
         <div class="game-inner">
             <div class="game-item__thumb">
-            <img src="{% static 'assets/images/game/item2.png' %}" alt="game" />
+            <img src="{% static 'assets/images/game/spin.png' %}" alt="game" />
             </div>
             <div class="game-item__content">
-            <h4 class="title">Roulette</h4>
-            <p class="invest-info">Invest Limit</p>
-            <p class="invest-amount">$10.49 - $1,000</p>
-            <a href="#0" class="cmn--btn active btn--md radius-0"
+            <h4 class="title">Bottle Spin</h4>
+            <p class="invest-info">POSSIBLE WIN</p>
+            <p class="invest-amount">₱1,000,000 </p>
+            <a href="games/bottle_spin/" class="cmn--btn active btn--md radius-0"
                 >Play Now</a
+            >
+            </div>
+        </div>
+        <div class="ball"></div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6">
+        <div class="game-item">
+        <div class="game-inner">
+            <div class="game-item__thumb">
+            <img src="{% static 'assets/images/game/mines.jpg' %}" alt="game" />
+            </div>
+            <div class="game-item__content">
+            <h4 class="title">Mines</h4>
+            <p class="invest-info">POSSIBLE WIN</p>
+            <p class="invest-amount"> ₱1,000,000 </p>
+            <a href="games/minesweeper/" class="cmn--btn active btn--md radius-0"
+                >Play Now</a
+            >
+            </div>
+        </div>
+        <div class="ball"></div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6">
+        <div class="game-item">
+        <div class="game-inner">
+            <div class="game-item__thumb">
+            <img src="{% static 'assets/images/game/slot.png' %}" alt="game" />
+            </div>
+            <div class="game-item__content">
+            <h4 class="title">Mini Slot</h4>
+            <p class="invest-info">POSSIBLE WIN</p>
+            <p class="invest-amount">₱1,000,000 </p>
+            <a href="games/minislot/" class="cmn--btn active btn--md radius-0"
+                >Play Now</a
+            >
+            </div>
+        </div>
+        <div class="ball"></div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6">
+        <div class="game-item">
+        <div class="game-inner">
+            <div class="game-item__thumb">
+            <img src="{% static 'assets/images/game/flip.png' %}" alt="game" />
+            </div>
+            <div class="game-item__content">
+            <h4 class="title">Coin Flip</h4>
+            <p class="invest-info">POSSIBLE WIN</p>
+            <p class="invest-amount">₱1,000,000 </p>
+            <a href="games/head_tail/" class="cmn--btn active btn--md radius-0"
+                >Play Now</a
+            >
+            </div>
+        </div>
+        <div class="ball"></div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6">
+        <div class="game-item">
+        <div class="game-inner">
+            <div class="game-item__thumb">
+            <img src="{% static 'assets/images/game/rock.png' %}" alt="game" />
+            </div>
+            <div class="game-item__content">
+            <h4 class="title">Rock Paper & Scissors</h4>
+            <p class="invest-info">POSSIBLE WIN</p>
+            <p class="invest-amount">₱1,000,000 </p>
+            <a href="/#" class="cmn--btn active btn--md radius-0"
+                >Coming Soon</a
             >
             </div>
         </div>
@@ -127,83 +199,12 @@ style="background: url(/static/assets/images/game/bg3.jpg)"
             <img src="{% static 'assets/images/game/item1.png' %}" alt="game" />
             </div>
             <div class="game-item__content">
-            <h4 class="title">Zero To Ninty</h4>
-            <p class="invest-info">Invest Limit</p>
-            <p class="invest-amount">$10.49 - $1,000</p>
-            <a href="#0" class="cmn--btn active btn--md radius-0"
-                >Play Now</a
-            >
-            </div>
-        </div>
-        <div class="ball"></div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6">
-        <div class="game-item">
-        <div class="game-inner">
-            <div class="game-item__thumb">
-            <img src="{% static 'assets/images/game/item3.png' %}" alt="game" />
-            </div>
-            <div class="game-item__content">
-            <h4 class="title">Number Buy</h4>
-            <p class="invest-info">Invest Limit</p>
-            <p class="invest-amount">$10.49 - $1,000</p>
-            <a href="#0" class="cmn--btn active btn--md radius-0"
-                >Play Now</a
-            >
-            </div>
-        </div>
-        <div class="ball"></div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6">
-        <div class="game-item">
-        <div class="game-inner">
-            <div class="game-item__thumb">
-            <img src="{% static 'assets/images/game/item4.png' %}" alt="game" />
-            </div>
-            <div class="game-item__content">
-            <h4 class="title">Roulette</h4>
-            <p class="invest-info">Invest Limit</p>
-            <p class="invest-amount">$10.49 - $1,000</p>
-            <a href="#0" class="cmn--btn active btn--md radius-0"
-                >Play Now</a
-            >
-            </div>
-        </div>
-        <div class="ball"></div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6">
-        <div class="game-item">
-        <div class="game-inner">
-            <div class="game-item__thumb">
-            <img src="{% static 'assets/images/game/item5.png' %}" alt="game" />
-            </div>
-            <div class="game-item__content">
-            <h4 class="title">Card Game</h4>
-            <p class="invest-info">Invest Limit</p>
-            <p class="invest-amount">$10.49 - $1,000</p>
-            <a href="#0" class="cmn--btn active btn--md radius-0"
-                >Play Now</a
-            >
-            </div>
-        </div>
-        <div class="ball"></div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6">
-        <div class="game-item">
-        <div class="game-inner">
-            <div class="game-item__thumb">
-            <img src="{% static 'assets/images/game/item6.png' %}" alt="game" />
-            </div>
-            <div class="game-item__content">
-            <h4 class="title">Dice Rolling</h4>
-            <p class="invest-info">Invest Limit</p>
-            <p class="invest-amount">$10.49 - $1,000</p>
-            <a href="#0" class="cmn--btn active btn--md radius-0"
-                >Play Now</a
+            <h4 class="title">Plinko</h4>
+            <p class="invest-info">POSSIBLE WIN</p>
+            <p class="invest-amount">₱1,000,000 </p>
+            <br>
+            <a href="/#" class="cmn--btn active btn--md radius-0"
+                >Coming Soon</a
             >
             </div>
         </div>
@@ -217,11 +218,11 @@ style="background: url(/static/assets/images/game/bg3.jpg)"
             <img src="{% static 'assets/images/game/item2.png' %}" alt="game" />
             </div>
             <div class="game-item__content">
-            <h4 class="title">Card Game</h4>
-            <p class="invest-info">Invest Limit</p>
-            <p class="invest-amount">$10.49 - $1,000</p>
+            <h4 class="title">Roulette</h4>
+            <p class="invest-info">POSSIBLE WIN</p>
+            <p class="invest-amount">₱1,000,000 </p>
             <a href="#0" class="cmn--btn active btn--md radius-0"
-                >Play Now</a
+                >Coming soon!</a
             >
             </div>
         </div>
@@ -236,10 +237,10 @@ style="background: url(/static/assets/images/game/bg3.jpg)"
             </div>
             <div class="game-item__content">
             <h4 class="title">Dice Rolling</h4>
-            <p class="invest-info">Invest Limit</p>
-            <p class="invest-amount">$10.49 - $1,000</p>
+            <p class="invest-info">POSSIBLE WIN</p>
+            <p class="invest-amount">₱1,000,000 </p>
             <a href="#0" class="cmn--btn active btn--md radius-0"
-                >Play Now</a
+                >Coming soon!</a
             >
             </div>
         </div>
@@ -260,7 +261,7 @@ style="background: url(/static/assets/images/game/bg3.jpg)"
                 <h2 class="section-header__title">Why Play Our Casino</h2>
                 <p>A casino is a facility for certain types of gambling. Casinos are often built combined with hotels, resorts,</p>
             </div>
-            <p>Debitis ad dolor sint consequatur hic, facere est doloribustemp oribus in laborum similique saepe bland itiis odio nulla repellat dicta reprehenderit. Obcaecati, sed perferendis? Quam cum debitis odit recusandae dolor earum.</p>
+           
         </div>
     <div class="col-lg-7 col-xl-7">
         <div class="row gy-4 gy-md-5 gy-lg-4 gy-xl-5">
@@ -395,12 +396,12 @@ style="background: url(/static/assets/images/game/bg3.jpg)"
     <div class="col-lg-12 w-75">
         <div class="faq-item">
         <div class="faq-item__title">
-            <h5 class="title">01. How do I create Casine Account ?</h5>
+            <h5 class="title">01. How do I create Casino Account ?</h5>
         </div>
         <div class="faq-item__content">
             <p>
             To create an account? click on the play now button, fill in you details, then
-            click on the sign up button to complete your registeration
+            click on the sign up button to complete your registration.
             </p>
         </div>
         </div>
@@ -411,7 +412,7 @@ style="background: url(/static/assets/images/game/bg3.jpg)"
         <div class="faq-item__content">
             <p>
             To make deposit to your account, all you have to do is click on the deposit button,
-            select your payment method of choose, and make payment
+            select your payment method of choose, and make payment.
             </p>
         </div>
         </div>
@@ -421,8 +422,8 @@ style="background: url(/static/assets/images/game/bg3.jpg)"
         </div>
         <div class="faq-item__content">
             <p>
-            No Withdrawal eligibility, if you have money in your balance, you can Withdraw
-            directly to any Platform or Bank of your choice
+            A minimum of ₱500, If you have money in your balance you can Withdraw
+            directly to any Platform or Bank of your choices.
             </p>
         </div>
         </div>
@@ -432,8 +433,7 @@ style="background: url(/static/assets/images/game/bg3.jpg)"
         </div>
         <div class="faq-item__content">
             <p>
-            No, we don't charge you for any transactions made on the platform all transactions are
-            free, no hidden charge
+            Yes, we charge you 2% for any transactions made on the platform as a gas fee. 
             </p>
         </div>
         </div>
@@ -460,16 +460,16 @@ style="background: url(/static/assets/images/top/bg.png) center"
         <div class="investor-item">
             <div class="investor-item__thumb">
             <img src="{% static 'assets/images/top/item1.png' %}" alt="top" />
-            <p class="amount">$150</p>
+            <p class="amount">₱105,335</p>
             </div>
             <div class="investor-item__content">
-            <h6 class="name">Munna Ahmed</h6>
+            <h6 class="name">Munna Ali</h6>
             </div>
         </div>
         <div class="investor-item">
             <div class="investor-item__thumb">
             <img src="{% static 'assets/images/top/item2.png' %}" alt="top" />
-            <p class="amount">$270</p>
+            <p class="amount">₱270,023</p>
             </div>
             <div class="investor-item__content">
             <h6 class="name">Fahad Bin</h6>
@@ -478,16 +478,16 @@ style="background: url(/static/assets/images/top/bg.png) center"
         <div class="investor-item">
             <div class="investor-item__thumb">
             <img src="{% static 'assets/images/top/item3.png' %}" alt="top" />
-            <p class="amount">$52000</p>
+            <p class="amount">₱52,324</p>
             </div>
             <div class="investor-item__content">
-            <h6 class="name">Rafuj Raiha</h6>
+            <h6 class="name">Bin Mahid</h6>
             </div>
         </div>
         <div class="investor-item">
             <div class="investor-item__thumb">
             <img src="{% static 'assets/images/top/item1.png' %}" alt="top" />
-            <p class="amount">$150</p>
+            <p class="amount">₱263,236</p>
             </div>
             <div class="investor-item__content">
             <h6 class="name">Munna Ahmed</h6>
@@ -496,10 +496,10 @@ style="background: url(/static/assets/images/top/bg.png) center"
         <div class="investor-item">
             <div class="investor-item__thumb">
             <img src="{% static 'assets/images/top/item3.png' %}" alt="top" />
-            <p class="amount">$50</p>
+            <p class="amount">₱5,633</p>
             </div>
             <div class="investor-item__content">
-            <h6 class="name">Rafuj Raihan</h6>
+            <h6 class="name">John Carl</h6>
             </div>
         </div>
         </div>
@@ -508,9 +508,9 @@ style="background: url(/static/assets/images/top/bg.png) center"
         <div class="cla-wrapper text-center">
         <h3 class="title mb-4">
             WIN !!! & <br />
-            Get million dollars
+            Get million pesos
         </h3>
-        <a href="#0" class="cmn--btn active btn--md radius-0">Play Now</a>
+        <a href="/login" class="cmn--btn active btn--md radius-0">Play Now</a>
         <div class="thumb">
             <img src="{% static 'assets/images/top/bg2.png' %}" alt="top" />
         </div>
@@ -522,7 +522,7 @@ style="background: url(/static/assets/images/top/bg.png) center"
         <div class="investor-item">
             <div class="investor-item__thumb">
             <img src="{% static 'assets/images/top/item1.png' %}" alt="top" />
-            <p class="amount">$150</p>
+            <p class="amount">₱100,000</p>
             </div>
             <div class="investor-item__content">
             <h6 class="name">Munna Ahmed</h6>
@@ -531,7 +531,7 @@ style="background: url(/static/assets/images/top/bg.png) center"
         <div class="investor-item">
             <div class="investor-item__thumb">
             <img src="{% static 'assets/images/top/item2.png' %}" alt="top" />
-            <p class="amount">$270</p>
+            <p class="amount">₱27,000</p>
             </div>
             <div class="investor-item__content">
             <h6 class="name">Fahad Bin</h6>
@@ -540,7 +540,7 @@ style="background: url(/static/assets/images/top/bg.png) center"
         <div class="investor-item">
             <div class="investor-item__thumb">
             <img src="{% static 'assets/images/top/item3.png' %}" alt="top" />
-            <p class="amount">$52000</p>
+            <p class="amount">₱5,000</p>
             </div>
             <div class="investor-item__content">
             <h6 class="name">Rafuj Raiha</h6>
@@ -549,7 +549,7 @@ style="background: url(/static/assets/images/top/bg.png) center"
         <div class="investor-item">
             <div class="investor-item__thumb">
             <img src="{% static 'assets/images/top/item2.png' %}" alt="top" />
-            <p class="amount">$150</p>
+            <p class="amount">₱15,000</p>
             </div>
             <div class="investor-item__content">
             <h6 class="name">Munna Ahmed</h6>
@@ -558,7 +558,7 @@ style="background: url(/static/assets/images/top/bg.png) center"
         <div class="investor-item">
             <div class="investor-item__thumb">
             <img src="{% static 'assets/images/top/item3.png' %}" alt="top" />
-            <p class="amount">$50</p>
+            <p class="amount">₱50,000</p>
             </div>
             <div class="investor-item__content">
             <h6 class="name">Rafuj Raihan</h6>
@@ -608,7 +608,7 @@ class="testimonial-section padding-top padding-bottom overflow-hidden"
             </div>
             <div class="content">
                 <h6 class="name">Suraiya Nesa</h6>
-                <span class="designation">Top Pocker</span>
+                <span class="designation">Top Coin Flip</span>
             </div>
             </div>
         </div>
@@ -634,7 +634,7 @@ class="testimonial-section padding-top padding-bottom overflow-hidden"
             </div>
             <div class="content">
                 <h6 class="name">Munna Ahmed</h6>
-                <span class="designation">Top Pocker</span>
+                <span class="designation">Top Mines</span>
             </div>
             </div>
         </div>
@@ -660,7 +660,7 @@ class="testimonial-section padding-top padding-bottom overflow-hidden"
             </div>
             <div class="content">
                 <h6 class="name">Rafuj Raihan</h6>
-                <span class="designation">Top Pocker</span>
+                <span class="designation">Top Slot</span>
             </div>
             </div>
         </div>
@@ -686,7 +686,7 @@ class="testimonial-section padding-top padding-bottom overflow-hidden"
             </div>
             <div class="content">
                 <h6 class="name">Fahad Foiz</h6>
-                <span class="designation">Top Pocker</span>
+                <span class="designation">Top Slot</span>
             </div>
             </div>
         </div>
@@ -701,6 +701,60 @@ class="testimonial-section padding-top padding-bottom overflow-hidden"
 <!-- Testimonial Section Ends Here -->
 
 
+<!-- Contact Us Section Starts Here -->
+<section
+  class="contact-us-section d-flex align-items-center justify-content-center text-center padding-top padding-bottom overflow-hidden bg_img"
+  style="background: url('static/assets/images/how/bg2.jpg') center/cover no-repeat;"
+  id="contact_us"
+>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-7 col-xl-6">
+        <div class="section-header text-center">
+          <h2 class="section-header__title">Contact Us</h2>
+          <p>
+            Stay connected with us on social media or reach out through the links below.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8 text-center">
+        <ul class="social-links list-inline d-flex justify-content-center">
+          <li class="list-inline-item mx-2">
+            <a href="https://www.facebook.com/share/1BZ2fnG4ba/?mibextid=wwXIfr" target="_blank" class="social-link">
+            <i class="lab la-facebook-f"></i>
+            </a>
+          </li>
+          <li class="list-inline-item mx-2">
+            <a href="https://t.me/+W6_AsnOF2HYyNDVl" target="_blank" class="social-link">
+              <i class="lab la-telegram-plane"></i>
+            </a>
+          </li>
+          <li class="list-inline-item mx-2">
+            <a href="https://youtube.com/@flappybet.g?si=Ly6Fnq7ceHj36-fw" target="_blank" class="social-link">
+              <i class="lab la-youtube"></i>
+            </a>
+          </li>
+          <li class="list-inline-item mx-2">
+            <a href="https://www.tiktok.com/@flappybet?_t=8sXKqWW3LO4&_r=1" target="_blank" class="social-link">
+              <i class="fab fa-tiktok"></i>
+            </a>
+          </li>
+          <li class="list-inline-item mx-2">
+            <a href="mailto:yourgmailaddress@gmail.com" class="social-link">
+              <i class="lab la-google"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- Contact Us Section Ends Here -->
+
+
     </div>
 
     <!-- Banner on the right side laptop view -->
@@ -708,5 +762,6 @@ class="testimonial-section padding-top padding-bottom overflow-hidden"
 
     </div>
 </div>
+
 
 {% endblock %}

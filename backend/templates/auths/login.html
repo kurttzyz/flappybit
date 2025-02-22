@@ -12,7 +12,7 @@
             <div class="account__form__wrapper">
             
                 <form class="account__form form row g-4" method="post">
-
+                    <h3>Log In to Flappybit</h3>
                     {% csrf_token %}
                     {% for message in messages %}
                         {% if message.tags == success %}

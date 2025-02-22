@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from  django.http import HttpResponse
+from  django.http import HttpResponse, JsonResponse
 from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 from django.utils.encoding import force_bytes, force_str
 from django.contrib.sites.shortcuts import get_current_site
@@ -12,9 +12,14 @@ from django.contrib.auth import authenticate, login
 from django.core.mail import EmailMessage
 from django.contrib.auth.decorators import login_required
 from payments.models import TransactionHistory
+from django.db.models import Count, Sum
+import json
+from django.db import transaction
+
 
 def home(request):
-
+    
+   
 
     return render(request, 'backend/index.html')
 
@@ -35,28 +40,61 @@ def register(request):
     if request.method == 'POST':
         form = RegisterationForm(request.POST)
         if form.is_valid():
-            user = form.save(commit=False)
-            user.is_active = False
-            user.save()
-            # sending mail
-            website = get_current_site(request).domain
-            email_subject = 'Email Verification'
-            email_body =  render_to_string('email/activation.html',{
-                'user':user.first_name,
-                'domain':website,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': TokenGenerator.make_token(user)
-            })
-            email = EmailMessage(subject=email_subject, body=email_body,
-                from_email='TestMail <info.testmail@zohomail.com>', to=[user.email]
+            try:
+                user = form.save(commit=False)
+                user.is_active = False
+                user.save()
+
+                # Handle referral code from GET parameter
+                referral_code = request.GET.get('referral_code')
+                if referral_code:
+                    referring_user = User.objects.filter(referral_code=referral_code).first()
+                    if referring_user and referring_user != user:  # Prevent self-referral
+                        user.referred_by = referring_user
+                        user.save()  # Save the referred_by field
+
+                        referring_user.referrals.add(user)  # Track referrals
+                        referring_user.save()
+
+                        messages.success(
+                            request,
+                            f"Registration successful! You were referred by {referring_user.first_name}."
+                        )
+                    elif referring_user == user:
+                        messages.warning(request, "You cannot use your own referral code.")
+                    else:
+                        messages.warning(request, "Invalid referral code.")
+                else:
+                    messages.success(request, "Registration successful!")
+
+                # Sending email for verification
+                website = get_current_site(request).domain
+                email_subject = 'Email Verification'
+                email_body = render_to_string('email/activation.html', {
+                    'user': user.first_name,
+                    'domain': website,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': TokenGenerator.make_token(user)
+                })
+                email = EmailMessage(
+                    subject=email_subject, 
+                    body=email_body,
+                    from_email='TestMail <info.testmail@zohomail.com>', 
+                    to=[user.email]
                 )
-            email.content_subtype = 'html'
-            email.send()
-            messages.success(request, 'A Verification mail has been sent to your email or spam box')
-            return redirect('/login')
+                email.content_subtype = 'html'
+                email.send()
+
+                messages.success(request, 'A verification mail has been sent to your email or spam box.')
+                return redirect('/login')
+            except Exception as e:
+                messages.error(request, f"An error occurred: {e}")
+        else:
+            messages.error(request, "Registration failed. Please check the form.")
     else:
         form = RegisterationForm()
-    args = {'forms':form}
+
+    args = {'forms': form}
     return render(request, 'auths/register.html', args)
 
 
@@ -115,7 +153,7 @@ def loginview(request):
                     else:
                         messages.error(request, 'Invalid email or password.')
                 else:
-                    messages.error(request, 'Your account is currently inactive. To activate check your email or spam, Please contact support for assistance.')
+                    messages.error(request, 'Verify your account. To verify your account check your gmail or spam folder, contact support for assistance.')
                     return redirect('/login')
             except:
                 messages.error(request, 'Invalid email or password.')
@@ -125,18 +163,82 @@ def loginview(request):
     
 
 def profile(request):
-    history = TransactionHistory.objects.filter(user=request.user)[:5]
-    args = {'history': history}
-    return render(request, 'backend/profile.html', args )
+        
+        valid_referrals_count = User.objects.filter(referred_by=request.user, has_received_referral_reward=True).count()
+        leaderboard = (
+            User.objects.annotate(
+            total_referrals=Count('referrals'),
+            total_income=Sum('referral_income')
+        )
+        .order_by('-total_income', '-total_referrals')  # Order by income, then referrals
+        )
+        
+   
+
+        context = {
+            'valid_referrals_count' : valid_referrals_count,
+            'leaderboard' : leaderboard
+        }
+        return render(request, 'backend/profile.html', context)
+    
+
 
 def history(request):
     total_history = TransactionHistory.objects.all().filter(user=request.user)
     args = {'history': total_history}
     return render(request, 'backend/history.html', args)
 
+@login_required
+def getbalance(request):
+    try:
+        user = User.objects.get(email = request.user.email)
+        bal = user.balance
+        return JsonResponse({'bal': bal})
+    except:
+        return JsonResponse({'bal': 0})
+    
 def rewards(request):
-    return render(request, 'backend/rewards.html')
+    valid_referrals_count = User.objects.filter(referred_by=request.user, has_received_referral_reward=True).count()
+
+    context = {
+        'valid_referrals_count' : valid_referrals_count,
+    }
+    return render(request, 'backend/rewards.html', context)
 
 def terms(request):
     return render(request, 'backend/terms.html')
 
+@login_required
+def claim_reward_api(request):
+    if request.method == 'POST':
+    
+            data = json.loads(request.body)
+            tier = data.get('tier')
+            reward = data.get('reward', 0)
+            required_referrals = data.get('required_referrals', 0)
+            valid_referrals_count = User.objects.filter(referred_by=request.user, has_received_referral_reward=True).count()
+
+            # Ensure the user has enough referrals
+            if valid_referrals_count >= required_referrals:
+                # Update the user's referral income
+                reward_amount = int(reward.replace('₱', '').replace(',', ''))
+                request.user.referral_income += reward_amount
+                request.user.save()
+
+                return JsonResponse({'success': True, 'message': f'{reward} from {tier} claimed successfully!'})
+            else:
+                return JsonResponse({'success': False, 'message': 'Not enough referrals to claim this reward.'})
+        
+    else:
+        return JsonResponse({'success': False, 'message': 'Invalid request method.'})
+
+
+@login_required
+def claim_referral_income(request):
+    user = request.user  # Get the currently logged-in user
+    
+    # Call the model method
+    user.claim_referral_income()
+   
+    
+    return redirect('/profile')  # Redirect to a relevant page
