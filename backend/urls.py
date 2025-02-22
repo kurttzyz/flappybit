@@ -15,10 +15,14 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('getbalance/', views.getbalance, name='balance'),
     path('transaction_history/', views.history, name='history'),
+<<<<<<< HEAD
+    path('getbalance/', views.getbalance, name='balance'),
+=======
     path('my_rewards/', views.rewards, name="rewards"),
     path('claim-reward/', views.claim_reward_api, name='claim_reward_api'),
     path('claim-referral-income/', views.claim_referral_income, name='claim-referral-income'),
     path("terms&condition/", views.terms, name="terms"),
+>>>>>>> 0244ff341220a700c22737e2212fae206c843efa
 
 
 

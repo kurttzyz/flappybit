@@ -1,10 +1,14 @@
 {% load static %}
+<<<<<<< HEAD
 {% block body %}
+=======
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Flappybit</title>
     <link rel="stylesheet" href="{% static 'minislot/main.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,11 +24,28 @@
     </div>
 
     <div id="contain">
+=======
+    <title>Slot</title>
+    <link rel="stylesheet" href="{% static 'minislot/main.css' %}">
+    <meta name="csrf-token" content="{{ csrf_token }}">
+</head>
+<body>
+
+    <div class="option">
+        <i class="fa-solid fa-volume-high fa-2x" id="sound"></i>
+        <div id="balance">{% if balance %} ₱{{balance}} {% else %} ₱0.00 {% endif %}</div>
+        <i class="fa-solid fa-arrows-rotate fa-2x" id="reload"></i>
+    </div>
+    
+    <div id="contain">
+
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
         <div class="slots">
             <div class="reel"></div>
             <div class="reel"></div>
             <div class="reel"></div>
         </div>
+<<<<<<< HEAD
     </div>
 
     <div class="option2">
@@ -32,19 +53,43 @@
         <div class="amount-input-container">
             <button id="minus-btn">-</button>
             <input id="amount-input" type="number" value="10" min="10" />
+=======
+
+    </div>
+
+
+    <div class="option2">
+        <!-- amount and button -->
+
+        <div class="amount-input-container">
+            <button id="minus-btn">-</button>
+            <input id="amount-input" type="number" value="100" min="100" />
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
             <button id="plus-btn">+</button>
         </div>
 
         <!-- spin button -->
+<<<<<<< HEAD
         <button id="spin">Spin</button>
     </div>
     
+=======
+
+        <button id="spin">Spin</button>
+    </div>
+    
+    <!-- functionality of game -->
+
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="{% static 'minislot/main.js' %}"></script>
 <script src="https://kit.fontawesome.com/82d49a62e0.js" crossorigin="anonymous"></script>
 </body>
 </html>
+<<<<<<< HEAD
 {% endblock %}
+=======
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
 
 
 

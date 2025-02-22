@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -149,10 +150,19 @@ def submit_minesweeper_result(request):
 
 
 @login_required(login_url='/login')
+=======
+from django.shortcuts import render
+from django.http import JsonResponse
+from . models import *
+from django.contrib.auth.decorators import login_required
+
+login_required(login_url='/login')
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
 def minislot(request):
 
     return render(request, 'games/minislot.html')
 
+<<<<<<< HEAD
 @login_required(login_url='/login')
 def minislotresult(request):
         result1 = request.POST['result1']
@@ -167,10 +177,26 @@ def minislotresult(request):
         return JsonResponse({'message': 'successful'})
 
 @login_required(login_url='/login')
+=======
+login_required(login_url='/login')
+def minislotresult(request):
+    result1 = request.POST['result1']
+    result2 = request.POST['result2']
+    result3 = request.POST['result3']
+    amount = request.POST['amount']
+
+    Minislot.objects.create(user=request.user, result1=result1, result2=result2, result3=result3, stake=amount)
+    user = User.objects.get(email = request.user.email)
+    user.balance -= int(amount)
+    user.save()
+    return JsonResponse({'message': 'successful'})
+
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
 def flipcoin(request):
 
     return render(request, 'games/flipcoin.html')
 
+<<<<<<< HEAD
 
 
 logger = logging.getLogger(__name__)
@@ -245,10 +271,17 @@ def submit_head_or_tail_result(request):
 
 
 @login_required(login_url='/login')
+=======
+def flipcoinresult(request):
+
+    return JsonResponse({'message': 'successful'})
+
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
 def rockpaper(request):
 
     return render(request, 'games/rockpaper.html')
 
+<<<<<<< HEAD
 
 @login_required(login_url='/login')
 def submit_rock_paper_scissors_result(request):
@@ -295,11 +328,18 @@ def submit_rock_paper_scissors_result(request):
     return JsonResponse({"error": "Invalid request method."}, status=405)
 
 @login_required(login_url='/login')
+=======
+def rockpaperresult(request):
+
+    return JsonResponse({'message': 'successful'})
+
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
 def bottlespin(request):
 
     
     return render(request, 'games/bottlespin.html')
 
+<<<<<<< HEAD
 
 @login_required(login_url='/login')
 def submit_bottle_spin_result(request):
@@ -338,3 +378,8 @@ def submit_bottle_spin_result(request):
 
 
 
+=======
+def bottlespinresult(request):
+
+    return JsonResponse({'message': 'successful'})
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523

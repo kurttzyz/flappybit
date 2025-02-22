@@ -43,8 +43,16 @@ INSTALLED_APPS = [
     # Added to the installed app
     'payments.apps.PaymentsConfig',
     'backend.apps.BackendConfig',
+<<<<<<< HEAD
     'games.apps.GamesConfig',
+=======
+<<<<<<< HEAD
+    'games.apps.GamesConfig',
+    'storages',
+=======
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
    
+>>>>>>> 0244ff341220a700c22737e2212fae206c843efa
 
 ]
 
@@ -187,6 +195,7 @@ STATIC_FILES = [
 ]
 # static config for local server
 STATIC_URL = '/static/'
+
 
 
 # static config for production

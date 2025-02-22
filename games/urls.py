@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+<<<<<<< HEAD
 app_name = 'games'
 
 
@@ -33,3 +34,22 @@ urlpatterns = [
     path('submit_bottlespin_result/', views.submit_bottle_spin_result, name='bottlespin_result'),
 
 ]
+=======
+app_name ='games'
+
+urlpatterns = [
+    path('minislot/', views.minislot, name='minislot'),
+    path('submit_minislot_result/', views.minislotresult, name='minislotresult'),
+
+    path('head_tail/', views.flipcoin, name='flipcoin'),
+    path('submit_head_or_tail_result/', views.flipcoinresult, name='minislotresult'),
+
+
+    path('rock_paper_sissors/', views.rockpaper, name='rockpaper'),
+    path('submit_rock_paper_sissors_result/', views.rockpaperresult, name='minislotresult'),
+
+
+    path('bottle_spin', views.bottlespin, name='bottlespin'),
+    path('submit_bottlespin_result/', views.bottlespinresult, name='minislotresult'),
+]
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523

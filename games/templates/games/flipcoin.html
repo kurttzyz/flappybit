@@ -1,12 +1,19 @@
 {% load static %}
+<<<<<<< HEAD
 {% block body %}
 <!DOCTYPE html>
 <html lang="fr-FR">
+=======
+<!DOCTYPE html>
+<html lang="fr-FR">
+
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<<<<<<< HEAD
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'flipcoin/main.css' %}">
     <meta name="csrf-token" content="{{ csrf_token }}">
@@ -19,25 +26,49 @@
         <a href="/"><i class="fa-solid fa-home" style="font-size:36px" id="home"></i></a>
         <div id="balance">₱{% if balance %} {{ balance }} {% else %} 0.00 {% endif %}</div>
         <a href="/#games"><i class="material-icons" style="font-size:48px; color:white">&#xe5c3;</i></a>
+=======
+    <link rel="stylesheet" href="{% static 'flipcoin/main.css' %}">
+    <script src="{% static 'flipcoin/main.js' %}" defer></script>
+    <title>Heads or Tails</title>
+</head>
+
+<body>
+
+    <div class="setting">
+        <i class="fas fa-volume-up fa-2x" id="sound"></i>
+        <div id="balance">{% if balance %} {{balance}} {% else %} 0.00 {% endif %}</div>
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
         <i class="fas fa-sync-alt fa-2x" id="reload"></i>
     </div>
 
     <div class="container">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
         <div class="game-container">
             <div class="imgs">
                 <img class="face" src="{% static 'flipcoin/head.png' %}" alt="">
                 <img class="back" src="{% static 'flipcoin/tail.png' %}" alt="">
             </div>
+<<<<<<< HEAD
 
             <div class="scores">
                 <span style="color:white;" class="faceS"></span>
                 <span style="color:white;" class="backS"></span>
             </div>
 
+=======
+            <div class="scores">
+                <span class="faceS"></span>
+                <span class="backS"></span>
+            </div>
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
             <div class="options">
                 <button class="choose">Head</button>
                 <button class="choose">Tails</button>
             </div>
+<<<<<<< HEAD
 
             <!-- amount -->
             <div class="option">
@@ -47,13 +78,34 @@
                     <button id="plus-btn">+</button>
                 </div>
             </div>
+=======
+    
+            <!-- amount -->
+    
+            <div class="option">
+                <div class="amount-input-container">
+                    <button id="minus-btn">-</button>
+                    <input id="amount-input" type="number" value="50" min="50" />
+                    <button id="plus-btn">+</button>
+                </div>
+            </div>
+    
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
             <button class="flip" > Flip Coin</button>
         </div>
 
     </div>
+<<<<<<< HEAD
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="{% static 'flipcoin/main.js' %}" defer></script>
 <script src="https://kit.fontawesome.com/82d49a62e0.js" crossorigin="anonymous"></script>
 </body>
 </html>
 {% endblock %}
+=======
+
+    
+</body>
+
+</html>
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523

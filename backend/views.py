@@ -188,7 +188,11 @@ def history(request):
     args = {'history': total_history}
     return render(request, 'backend/history.html', args)
 
+<<<<<<< HEAD
 @login_required
+=======
+<<<<<<< HEAD
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
 def getbalance(request):
     try:
         user = User.objects.get(email = request.user.email)
@@ -197,6 +201,10 @@ def getbalance(request):
     except:
         return JsonResponse({'bal': 0})
     
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 6b2e3bd1e212ea7a3d823cbdd13bc045dadcc523
 def rewards(request):
     valid_referrals_count = User.objects.filter(referred_by=request.user, has_received_referral_reward=True).count()
 
@@ -207,6 +215,7 @@ def rewards(request):
 
 def terms(request):
     return render(request, 'backend/terms.html')
+>>>>>>> 0244ff341220a700c22737e2212fae206c843efa
 
 @login_required
 def claim_reward_api(request):
